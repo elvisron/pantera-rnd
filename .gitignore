@@ -1,0 +1,6 @@
+# Ignore specific files
+st.py
+Architecture.jpg
+__pycache__
+var.env
+keys.txt
