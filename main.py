@@ -46,7 +46,7 @@ class Main:
             chunk_size=1000, chunk_overlap=200)
         docs = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings()
-        Pinecone(api_key=self.pinecone_api_key, environment='us-east-1-aws')
+        Pinecone(api_key=self.pinecone_api_key, environment='us-east1-gcp')
         vectbd = PineconeVectorStore.from_documents(
             docs, embeddings, index_name=self.pinecone_index_name)
         self.retriever = vectbd.as_retriever()
@@ -79,7 +79,7 @@ class Main:
             chunk_size=1000, chunk_overlap=200)
         docs = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings()
-        Pinecone(api_key=self.pinecone_api_key, environment='us-east-1-aws')
+        Pinecone(api_key=self.pinecone_api_key, environment='us-east1-gcp')
         vectbd = PineconeVectorStore.from_documents(
             docs, embeddings, index_name=self.pinecone_index_name)
         self.retriever = vectbd.as_retriever()
@@ -142,9 +142,9 @@ class Main:
 
 main = Main()
 
-st.set_page_config(page_title="Elvis AiApp", layout="wide")
+st.set_page_config(page_title="Pantera AI R & D", layout="wide")
 
-st.title("Elvis AiApp")
+st.title("Pantera AI R & D")
 
 # Initialize session state
 if "messages" not in st.session_state:
