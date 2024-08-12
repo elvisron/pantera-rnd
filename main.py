@@ -46,7 +46,7 @@ class Main:
             chunk_size=1000, chunk_overlap=200)
         docs = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings()
-        Pinecone(api_key=self.pinecone_api_key, environment='us-east1-gcp')
+        Pinecone(api_key=self.pinecone_api_key, environment='eu-west1-gcp')
         vectbd = PineconeVectorStore.from_documents(
             docs, embeddings, index_name=self.pinecone_index_name)
         self.retriever = vectbd.as_retriever()
@@ -79,7 +79,7 @@ class Main:
             chunk_size=1000, chunk_overlap=200)
         docs = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings()
-        Pinecone(api_key=self.pinecone_api_key, environment='us-east1-gcp')
+        Pinecone(api_key=self.pinecone_api_key, environment='eu-west1-gcp')
         vectbd = PineconeVectorStore.from_documents(
             docs, embeddings, index_name=self.pinecone_index_name)
         self.retriever = vectbd.as_retriever()
