@@ -202,7 +202,7 @@ elif option == "Generate customer questionaire":
     instruction = st.text_input(
         "Enter any additional instructions (e.g., I need these MCQs from the perspective of a beginner investor)")
 
-    if st.button("Generate Quiz"):
+    if st.button("Generate Questionnaire"):
         if subject and num_questions and instruction:
             with st.spinner("Generating questionaire..."):
                 quiz_text = main.generate_quiz(
