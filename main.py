@@ -157,16 +157,16 @@ if "correct_answers" not in st.session_state:
     st.session_state.correct_answers = []
 
 option = st.sidebar.selectbox(
-    "Choose an option", ("Chat", "Fine-tuning", "Generate Quiz"))
+    "Choose an option", ("Chat", "Fine-tuning", "Generate customer questionaire"))
 
 if option == "Chat":
-    st.header("Chat with your Docs")
+    st.header("Test the RAG with Pantera Enterprise Documents")
 
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    if prompt := st.chat_input("What is up?"):
+    if prompt := st.chat_input("What do you want to know about the market, investment, etc."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
@@ -179,7 +179,7 @@ if option == "Chat":
             st.markdown(response)
 
 elif option == "Fine-tuning":
-    st.header("Upload your data here")
+    st.header("Upload data here")
     uploaded_file = st.file_uploader(
         "Upload a file for fine-tuning", type=["txt", "pdf", "csv", "xlsx", "docx"])
 
@@ -194,17 +194,17 @@ elif option == "Fine-tuning":
         st.success(
             "Fine-tuning done successfully. You can now chat with the updated RAG Assistant.")
 
-elif option == "Generate Quiz":
-    st.header("Generate Quiz")
-    subject = st.text_input("Enter the subject (e.g., math, physics, english)")
+elif option == "Generate customer questionaire":
+    st.header("Generate customer questionaire")
+    subject = st.text_input("Enter the area (e.g., Beginner Investor, Expert/Professional Investor, High Risk Investor)")
     num_questions = st.number_input(
         "Number of questions (Max 50)", min_value=1, max_value=50, step=1)  # Set practical limit from 1 to 50
     instruction = st.text_input(
-        "Enter any additional instructions (e.g., I need these MCQs from algebra chapter 1)")
+        "Enter any additional instructions (e.g., I need these MCQs from the perspective of a beginner investor)")
 
     if st.button("Generate Quiz"):
         if subject and num_questions and instruction:
-            with st.spinner("Generating quiz..."):
+            with st.spinner("Generating questionaire..."):
                 quiz_text = main.generate_quiz(
                     subject, num_questions, instruction)
 
@@ -244,10 +244,10 @@ elif option == "Generate Quiz":
 
                 st.session_state.answers = [None] * len(st.session_state.quiz)
 
-            st.success("Quiz generated successfully!")
+            st.success("Questionnaire generated successfully!")
 
     if st.session_state.quiz:
-        st.markdown("### Attempt the Quiz")
+        st.markdown("### Attempt the Questions")
         for i, qa in enumerate(st.session_state.quiz):
             question = qa["question"]
             options = qa["options"]
